@@ -1,0 +1,30 @@
+package com.linky;
+
+/**
+ * Created by Linky on 16-6-25.
+ * 最小比较单元
+ */
+public class SortItem implements Cloneable {
+
+    public int sorter;
+
+    @Override
+    public SortItem clone() {
+        try {
+            return (SortItem) super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
+    }
+
+    public static SortItem[] generateSortItems() {
+        SortItem[] sortItems = new SortItem[10];
+        int j = 0;
+        for (int i = 9; i >= 0; i--) {
+            SortItem item = new SortItem();
+            item.sorter = i;
+            sortItems[j++] = item;
+        }
+        return sortItems;
+    }
+}
