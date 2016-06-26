@@ -5,7 +5,6 @@ package com.linky;
  */
 public class InsertionSort {
 
-	private static final int START_INDEX = 1;
     private SortItem[] items;
 
     public InsertionSort(SortItem[] items) {
