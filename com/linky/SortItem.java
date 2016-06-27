@@ -16,7 +16,7 @@ public class SortItem implements Cloneable {
             return null;
         }
     }
-    
+
     public boolean lessThan(SortItem item) {
     	return sorter < item.sorter; 
     }
