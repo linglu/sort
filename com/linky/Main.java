@@ -3,7 +3,12 @@ package com.linky;
 public class Main {
 
 	public static void main(String[] args) {
-		insertion();
+
+		ShellSort shellSort = new ShellSort(SortItem.generateSortItems());
+		shellSort.sort();
+		
+		shellSort.display();
+		
     }
 	
 	public static void insertion() {

@@ -8,7 +8,16 @@ public class InsertionSort {
     private SortItem[] items;
 
     public InsertionSort(SortItem[] items) {
-        this.items = items;
+    	int count = 0;
+    	for (SortItem item : items) {
+    		if (item != null) {
+    			count++;
+    		}
+    	}
+    	this.items = new SortItem[count];
+    	for (int i = 0; i < count; i++) {
+    		this.items[i] = items[i];
+    	}
     }
 
     public void sort() {
