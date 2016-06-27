@@ -2,7 +2,6 @@ package com.linky;
 
 public class ShellSort {
 
-	private static final int GROUP_COUNT = 3;
 	private SortItem[] items;
 
     public ShellSort(SortItem[] items) {
@@ -12,47 +11,26 @@ public class ShellSort {
     public void sort() {
 
     	/**
-    	 * 使用 分组大小递减，从 N/3 至 1 
-    	 * 1. 获得子组元素；
-    	 * 2. 对子组元素进行排序；
+    	 * 遍历数组，比较间隔为 h 的元素，将较小的放在左边
+    	 * h 的大小为一个 递减序列
     	 */
     	int N = items.length;
-    	int groupCount = GROUP_COUNT;
-
-    	for (int p = groupCount; p > 0; p--) {
-	    	int subGroupSize = N / p + 1;
-	    	SortItem[] temps = new SortItem[subGroupSize];
-
-	    	// 对每组进行插入排序
-	    	for (int k = 0; k < p; k++) {
-	    		
-	    		// 获取分组 
-	    		int j = 0;
-	    		for (int i = k; i < N;) {
-	        		temps[j] = items[i];
-	        		j++;
-	        		i = i + p;
-	        	}
-	    		
-	    		// 去除数组中的空值 
-	        	SortItem[] temps1 = new SortItem[j];
-	        	for (int i = 0; i < j; i++) {
-	        		temps1[i] = temps[i];
-	        	}
-	
-	    		// 对分组进行排序
-	    		InsertionSort insertionSort = new InsertionSort(temps1);
-	        	insertionSort.sort(); 
-	
-	        	// 输出排序结果
-	        	System.out.print("temps : ");
-	        	for (SortItem item : temps1) {
-	        		if (item != null)
-	        			System.out.print(item.sorter + ", ");
-	    		}
-	        	System.out.println('\n');
-	    	}
+    	int h = 1;
+    	while (h < N/3) h = 3*h + 1;	// 1, 4, 13, 40, ...
+    	while (h >= 1) {
+    		for (int i = h; i < N; i++) {
+    			for (int j = i; j >= h && items[j].lessThan(items[j-h]); j -= h) {
+    				exchange(j, j-h);
+    			}
+    		}
+    		h = h/3;	// 递减 
     	}
+    }
+    
+    private void exchange(int i, int j) {
+        int sorter = items[i].sorter;
+        items[i].sorter= items[j].sorter;
+        items[j].sorter = sorter;
     }
     
     public void display() {
