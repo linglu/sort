@@ -3,7 +3,7 @@ package com.linky;
 public class Main {
 
 	public static void main(String[] args) {
-		MergeSort.sort(SortItem.generateSortItems(), 0, 4, 9);
+		MergeSort.sort(SortItem.generateSortItems(), 0, 9);
     }
 	
 	public static void shell() {
