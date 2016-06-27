@@ -23,20 +23,30 @@ public class ShellSort {
 	    	int subGroupSize = N / p + 1;
 	    	SortItem[] temps = new SortItem[subGroupSize];
 
-	    	// 进一步扩展 
-	    	for (int k = 0; k < N/p; k++) {
+	    	// 对每组进行插入排序
+	    	for (int k = 0; k < p; k++) {
+	    		
+	    		// 获取分组 
 	    		int j = 0;
 	    		for (int i = k; i < N;) {
 	        		temps[j] = items[i];
 	        		j++;
 	        		i = i + p;
 	        	}
+	    		
+	    		// 去除数组中的空值 
+	        	SortItem[] temps1 = new SortItem[j];
+	        	for (int i = 0; i < j; i++) {
+	        		temps1[i] = temps[i];
+	        	}
 	
-	    		InsertionSort insertionSort = new InsertionSort(temps);
+	    		// 对分组进行排序
+	    		InsertionSort insertionSort = new InsertionSort(temps1);
 	        	insertionSort.sort(); 
 	
+	        	// 输出排序结果
 	        	System.out.print("temps : ");
-	        	for (SortItem item : temps) {
+	        	for (SortItem item : temps1) {
 	        		if (item != null)
 	        			System.out.print(item.sorter + ", ");
 	    		}
