@@ -3,7 +3,13 @@ package com.linky;
 public class Main {
 
 	public static void main(String[] args) {
-		MergeSort.sort(SortItem.generateSortItems(), 0, 9);
+		
+		MergeSort.BuSort(SortItem.generateSortItems());
+		
+    }
+	
+    public static double log(double value, double base) {
+    	return Math.log(value) / Math.log(base);
     }
 	
 	public static void shell() {

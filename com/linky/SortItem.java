@@ -18,17 +18,18 @@ public class SortItem implements Cloneable {
     }
 
     public boolean lessThan(SortItem item) {
-    	return sorter < item.sorter; 
+    	return sorter <= item.sorter; 
     }
 
     public static SortItem[] generateSortItems() {
-        SortItem[] sortItems = new SortItem[10];
+        SortItem[] sortItems = new SortItem[11];
         int j = 0;
         for (int i = 9; i >= 0; i--) {
             SortItem item = new SortItem();
             item.sorter = i;
             sortItems[j++] = item;
         }
+        sortItems[j] = new SortItem();
         return sortItems;
     }
 }
