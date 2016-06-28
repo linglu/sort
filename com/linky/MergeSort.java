@@ -27,49 +27,11 @@ public class MergeSort {
     // 自底向上归并排序算法 
     public static void BuSort(SortItem[] items) {
     	int N = items.length;
-    	for (int n = 0; n < N; n++) {
-    		System.out.print(items[n].sorter + ", ");
-        }
-        System.out.println('\n');
-    	
-    	int outer = (int) Math.ceil(log(N, 2));
-    	for (int i = 0; i < outer; i++) {
-    		int factor = (int) Math.pow(2, i+1);	// 1, 2, 4, 8, 16, ...... 
-    		int j = 0;
- 
-    		if (factor > N) {
-    			factor = factor / 2;
-    			System.out.println("1. low : " + 0 + ", mid : " + (factor - 1) + ", high : " + (N - 1));
-    			merge(items, 0, factor - 1, N - 1);
-    			return;
+    	for (int subSize = 1; subSize < N; subSize *= 2) {
+    		for (int low = 0; low < N - subSize; low += 2*subSize) {
+    			merge(items, low, low + subSize - 1, Math.min(low + 2*subSize-1,  N - 1));
     		}
- 
-    		for (; N - j >= factor; j += factor) {
-    			int low = j;
-    			int mid = (int) (j + (Math.pow(2, i) - 1));
-    			int high = (int) (j + (Math.pow(2, i+1) - 1));
-    			
-    			System.out.println("2. low : " + low + ", mid : " + mid + ", high : " + high);
-    			merge(items, low, mid, high);
-    		}
-    		
-    		if (j > 0 && N - j != factor) {
-    			if (j + factor - 1 >= N) {
-    				System.out.println("3. low : " + j + ", mid : " + j  + ", high : " + (N - 1));
-    				merge(items, j, j, N-1);	
-    			} else {
-    				System.out.println("3. low : " + j + ", mid : " + (j + factor - 1) + ", high : " + (N - 1));
-    				merge(items, j, j + (factor - 1), N-1);
-    			}
-    		}
-    		
-    		System.out.print("factor : " + factor + " ---> ");
-        	for (int n = 0; n < N; n++) {
-        		System.out.print(items[n].sorter + ", ");
-            }
-            System.out.println('\n');
-            System.out.println('\n');
-    	} 
+    	}
     } 
 
     public static double log(double value, double base) {
