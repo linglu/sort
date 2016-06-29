@@ -3,14 +3,23 @@ package com.linky;
 public class Main {
 
 	public static void main(String[] args) {
-		
+		quickSort();
+    } 
+
+	public static void quickSort() {
+		SortItem[] items = RandomGenerator.generateRandoms();
+		display(items);
+		QuickSort.sort(items, 0, items.length - 1);
+		display(items);
+	}
+
+	public static void partition() {
 		// SortItem[] items = SortItem.generateSortItems();
 		SortItem[] items = RandomGenerator.generateRandoms();
 		display(items);
 		QuickSort.partition(items, 0, 9);
 		display(items);
-		
-    } 
+	} 
 	
 	public static void shell() {
 		ShellSort shellSort = new ShellSort(SortItem.generateSortItems());
