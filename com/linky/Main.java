@@ -2,8 +2,18 @@ package com.linky;
 
 public class Main {
 
+	/**
+	 * 待排数组的可能特征：
+	 * 1. 已经有顺序；
+	 * 2. 包含大量重复元素；
+	 * 3. 部分有序；
+	 * 4. 倒序； 
+	 */
 	public static void main(String[] args) {
-		quickSort();
+		SortItem[] items = RandomGenerator.generateRandoms();
+		display(items);
+		Quick3Way.sort(items, 0, items.length -1);
+		display(items);
     } 
 
 	public static void quickSort() {

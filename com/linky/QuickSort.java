@@ -2,8 +2,15 @@ package com.linky;
 
 public class QuickSort {
 
+	public static final int M = 10;	// 5 ~ 10 
+	
     public static void sort(SortItem[] items, int low, int high) {
-    	if (high <= low) return;
+    	if (high <= low + M) {
+    		// 如果是小数组，5 ～ 15个元素，那么使用插入排序会更快一点；
+    		SelectionSort sSort = new SelectionSort(items);	
+    		sSort.sort();
+    		return;
+    	}
     	int j = partition(items, low, high);
     	sort(items, low, j - 1);
     	sort(items, j+1, high);
