@@ -4,13 +4,13 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		MergeSort.BuSort(SortItem.generateSortItems());
+		// SortItem[] items = SortItem.generateSortItems();
+		SortItem[] items = RandomGenerator.generateRandoms();
+		display(items);
+		QuickSort.partition(items, 0, 9);
+		display(items);
 		
-    }
-	
-    public static double log(double value, double base) {
-    	return Math.log(value) / Math.log(base);
-    }
+    } 
 	
 	public static void shell() {
 		ShellSort shellSort = new ShellSort(SortItem.generateSortItems());
@@ -32,5 +32,14 @@ public class Main {
 
         selection.sort();
         selection.display();
+	}
+	
+	public static void display(SortItem items[]) {
+		assert items != null;
+		int N = items.length;
+		for (int i = 0; i < N; i++) {
+			System.out.print(items[i].sorter + ", ");
+		}
+		System.out.println("\n");
 	}
 }
