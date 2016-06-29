@@ -7,27 +7,19 @@ public class Quick3Way {
 	 */
 	public static void sort(SortItem[] items, int low, int high) {
 
-		if (low >= high) return;
-		
+		if (high <= low) return;
 		int lt = low;
 		int i = low + 1;
 		int gt = high;
-
 		SortItem item = items[low].clone();
-		for (;i <= gt;) {
-			if (items[i].lessThan(item)) {
-				exchange(items, lt, i);
-				lt++;
-				i++;
-			} else if (item.lessThan(items[i])) {
-				exchange(items, gt, i);
-				gt--;
-			} else if (item.sorter == items[i].sorter) {
-				i++;
-			}
+		while (i <= gt) {
+			int cmp = items[i].compareTo(item);
+			if (cmp < 0) exchange(items, lt++, i++);
+			else if (cmp > 0) exchange(items, i, gt--);
+			else i++;
 		}
 		sort(items, low, lt - 1);
-		sort(items, gt + 1, high);
+		sort(items, gt + 1, high); 
 	}
 
 	public static void display(SortItem items[]) {
