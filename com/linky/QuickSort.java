@@ -6,30 +6,20 @@ public class QuickSort {
     	
     }
 
-    public static void partition(SortItem[] items, int low, int high) {
-
+    public static int partition(SortItem[] items, int low, int high) {
     	assert items != null;
-    	
-    	int i = low + 1;
-    	int j = high;
+    	int i = low;
+    	int j = high + 1;
+
     	SortItem item = items[low];
-    	while (i != j) {
-	    	while (items[i].lessThan(item) && i < j) {
-	    		i++;
-	    	}
-	    	while (item.lessThan(items[j]) && j > i) {
-	    		j--;
-	    	}
-	    	if (i != j) {
-	    		exchange(items, i, j);
-	    	}
-    	}
-    	
-    	if (i == high) {
-    		exchange(items, low, i);
-    	} else {
-    		exchange(items, low, i - 1);
-    	}
+    	while (true) {
+    		while (items[++i].lessThan(item)) if (i == high) break; 
+    		while (item.lessThan(items[--j])) if (j == low) break; 
+    		if (i >= j) break; 
+    		exchange(items, i, j); 
+    	}  
+    	exchange(items, low, j);
+    	return j;
     } 
 
     private static void exchange(SortItem[] items, int i, int j) {
